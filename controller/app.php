@@ -112,7 +112,7 @@
     public function getClienteInativo() {
       $query = '
         select 
-          sum(cliente_ativo) as total_ativo
+          count(*) as total_inativo
         from 
           tb_clientes 
         where cliente_ativo = false';
@@ -120,7 +120,7 @@
       $stmt = $this->conexao->prepare($query);
       $stmt->execute();
 
-      return $stmt->fetch(PDO::FETCH_OBJ)->total_ativo;
+      return $stmt->fetch(PDO::FETCH_OBJ)->total_inativo;
     }
 
     public function getReclamacao() {
