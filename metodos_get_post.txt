@@ -1,0 +1,55 @@
+$(document).ready(() => {
+	$('#documentacao').on('click',()=> {
+    //console.log('link documentação clidado')
+    //$('#pagina').load('documentacao.html')
+    //pode ser get ou post
+    $.get('documentacao.html', data =>{
+      //console.log(data)
+      $('#pagina').html(data)
+    })
+  })
+
+  $('#suporte').on('click',()=> {
+    //console.log('link suporte clidado')
+    $.get('suporte.html', data =>{
+      $('#pagina').html(data)
+    })
+  })
+})
+
+*************************************************
+
+$('#competencia').on('change',evento => {
+    //Debug
+    //console.log($(evento.target).val())
+
+    $.ajax({
+      type: 'POST',
+      url:'controller/app.php',
+      data: 'competencia=2018-10', //x-www-form-urlencoded Ex.:competencia=2018-10&x=10...etc
+      success: dados => {console.log(/*'Requisição realizada com sucesso!'*/dados)},
+      error: erro => {console.log(/*'Erro na requisição.'*/erro)}
+    })
+    //método, url, dados, sucesso, erro
+  })
+
+  *************************************************
+
+  select * from tb_clientes where cliente_ativo = 0;
+
+  select sum(cliente_ativo) from tb_clientes where cliente_ativo = 1
+
+  -- auto-generated definition
+select * from tb_clientes where cliente_ativo = 0;
+
+select sum(cliente_ativo) as total_ativo from tb_clientes where cliente_ativo = true;
+
+select sum(tipo_contato) as total_critica from tb_contatos where tipo_contato = 1;
+
+select *, count(*) as total_elogio from tb_contatos where tipo_contato like 3;
+
+select *, count(*) as total_sugestao from tb_contatos group by tipo_contato = 2;
+
+select *, count(*) as total_critica from tb_contatos group by tipo_contato = 1;
+
+select sum(total) as total_despesas from tb_despesas;
